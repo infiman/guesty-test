@@ -6,7 +6,7 @@ import { getForecastDataByCity } from '../../store/forecast'
 
 import './styles.css'
 
-const Forecast = ({ forecast, sort, city }) => (
+const Forecast = ({ forecast }) => (
   <div className="forecast">
     {forecast.map(({ date, minTemp, maxTemp, icon, conditions }) => (
       <div key={format(date, 'ddd M/D')} className="container">

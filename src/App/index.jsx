@@ -41,10 +41,11 @@ function App({ fetchForecast, metadata: { fetching, error } }) {
         </button>
       </div>
       {error && <span>{error.message}</span>}
+      {city}
       <Forecast city={city} sort={sort} />
       {fetching && <span>{`Fetching data for ${city}...`}</span>}
       <div>
-        Sort by:
+        Sort by (asc):{` `}
         <button onClick={() => setSort('date')}>Date</button>
         <button onClick={() => setSort('minTemp')}>Low temperature</button>
         <button onClick={() => setSort('maxTemp')}>High temperature</button>

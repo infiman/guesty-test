@@ -11,7 +11,9 @@ export const getForecastDataByCity = createCachedSelector(
   (_, city) => city,
   (_, __, sort) => sort,
   (cities, city, sort) =>
-    cities[city] ? cities[city].sort((a, b) => a[sort] - b[sort]) : []
+    cities[city]
+      ? Array.from(cities[city]).sort((a, b) => a[sort] - b[sort])
+      : []
 )((_, city, sort) => `${city}${sort}`)
 
 const FETCH_FORECAST = 'guesty-test/forecast/FETCH_FORECAST'
