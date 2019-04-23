@@ -1,0 +1,38 @@
+.forecast {
+  display: flex;
+  font-size: 12px;
+}
+
+.container {
+  display: flex;
+  width: 120px;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 3px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  padding: 3px;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
