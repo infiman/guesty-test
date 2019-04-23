@@ -1,6 +1,22 @@
+import { createSelector } from 'reselect'
+import createCachedSelector from 're-reselect'
+
+export const getForecastMetadata = createSelector(
+  state => state.forecast,
+  ({ fetching, error }) => ({ fetching, error })
+)
+
+export const getForecastDataByCity = createCachedSelector(
+  state => state.forecast.cities,
+  (_, city) => city,
+  (cities, city) => cities[city]
+)((_, city) => city)
+
 const FETCH_FORECAST = 'guesty-test/forecast/FETCH_FORECAST'
-export const fetchForecast = city => dispatch =>
-  fetch(
+export const fetchForecast = ({ city }) => dispatch => {
+  dispatch({ type: FETCH_FORECAST })
+
+  return fetch(
     'https://community-open-weather-map.p.rapidapi.com/forecast?q=london%2Cuk',
     {
       headers: {
@@ -11,9 +27,10 @@ export const fetchForecast = city => dispatch =>
   )
     .then(data => data.json())
     .then(response =>
-      dispatch(fetchForecastSucceed({ city, forecast: 'blabla' }))
+      dispatch(fetchForecastSucceed({ city, forecast: response }))
     )
     .catch(error => dispatch(fetchForecastFailed({ city, error })))
+}
 
 const FETCH_FORECAST_SUCCEED = 'guesty-test/forecast/FETCH_FORECAST_SUCCEED'
 const fetchForecastSucceed = payload => ({
